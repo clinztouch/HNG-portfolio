@@ -35,15 +35,15 @@ const StarBorder = <T extends React.ElementType = 'button'>({
           background: `radial-gradient(circle, ${color}, transparent 10%)`,
           animationDuration: speed
         }}
-      ></div>
+      />
       <div
         className="absolute w-[300%] h-[50%] opacity-70 top-[-10px] left-[-250%] rounded-full animate-star-movement-top z-0"
         style={{
           background: `radial-gradient(circle, ${color}, transparent 10%)`,
           animationDuration: speed
         }}
-      ></div>
-      <div className="relative z-1 bg-[#080c09] border border-[#243028] text-[#e2ece3] text-center text-[13px] font-semibold font-['DM_Mono',monospace] py-2.5 px-5 rounded-lg">
+      />
+      <div className="relative z-1 bg-bg-primary border border-border-secondary text-text-primary text-center text-[13px] font-semibold font-['DM_Mono',monospace] py-2.5 px-5 rounded-lg">
         {children}
       </div>
     </Component>

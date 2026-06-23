@@ -1,11 +1,71 @@
 @import "tailwindcss";
 
 @theme {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border-primary: var(--border-primary);
+  --color-border-secondary: var(--border-secondary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-bg: var(--accent-bg);
+  --color-accent-border: var(--accent-border);
+
   --animate-star-movement-bottom: star-movement-bottom linear infinite alternate;
   --animate-star-movement-top: star-movement-top linear infinite alternate;
   --animate-blink: blink 1s step-end infinite;
   --animate-success-in: success-in 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
   --animate-draw: draw 0.5s 0.3s ease forwards;
+}
+
+@layer base {
+  :root {
+    --bg-primary: #080c09;
+    --bg-secondary: #0e1410;
+    --bg-tertiary: #141a15;
+    --text-primary: #e2ece3;
+    --text-secondary: #7a9c82;
+    --text-tertiary: #3d5442;
+    --border-primary: #1c2620;
+    --border-secondary: #243028;
+    --accent: #4ade80;
+    --accent-hover: #22c55e;
+    --accent-bg: rgba(74, 222, 128, 0.12);
+    --accent-border: rgba(74, 222, 128, 0.2);
+  }
+
+  .dark {
+    --bg-primary: #080c09;
+    --bg-secondary: #0e1410;
+    --bg-tertiary: #141a15;
+    --text-primary: #e2ece3;
+    --text-secondary: #7a9c82;
+    --text-tertiary: #3d5442;
+    --border-primary: #1c2620;
+    --border-secondary: #243028;
+    --accent: #4ade80;
+    --accent-hover: #22c55e;
+    --accent-bg: rgba(74, 222, 128, 0.12);
+    --accent-border: rgba(74, 222, 128, 0.2);
+  }
+
+  .light {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-tertiary: #64748b;
+    --border-primary: #e2e8f0;
+    --border-secondary: #cbd5e1;
+    --accent: #16a34a;
+    --accent-hover: #15803d;
+    --accent-bg: rgba(22, 163, 74, 0.1);
+    --accent-border: rgba(22, 163, 74, 0.2);
+  }
 }
 
 @keyframes star-movement-bottom {

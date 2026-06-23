@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { ReactNode } from 'react'
+import { motion } from 'framer-motion'
+import { fadeUp, fadeLeft, fadeRight, container } from './motionVariants'
 
 const flow = [
   'User -> Web Portal / CLI',
@@ -48,8 +50,8 @@ const blocks: Block[] = [
         <div className="flex flex-col gap-0.5 mt-4">
           {flow.map((s, i, a) => (
             <div key={s}>
-              <div className="bg-[#080c09] border border-[#243028] rounded-lg px-3 py-1.5 font-['DM_Mono',monospace] text-xs text-[#7a9c82]">{s}</div>
-              {i < a.length - 1 && <div className="text-xs text-[#4ade80] pl-4">v</div>}
+              <div className="bg-bg-primary border border-border-secondary rounded-lg px-3 py-1.5 font-['DM_Mono',monospace] text-xs text-text-secondary">{s}</div>
+              {i < a.length - 1 && <div className="text-xs text-accent pl-4">v</div>}
             </div>
           ))}
         </div>
@@ -65,8 +67,8 @@ const blocks: Block[] = [
         {endpoints.map(e => (
           <div key={e.path} className="flex items-center gap-2 flex-wrap">
             <span className={`font-['DM_Mono',monospace] text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0 ${methodColors[e.method]}`}>{e.method}</span>
-            <code className="font-['DM_Mono',monospace] text-xs text-[#e2ece3]">{e.path}</code>
-            <span className="text-xs text-[#3d5442]">{e.desc}</span>
+            <code className="font-['DM_Mono',monospace] text-xs text-text-primary">{e.path}</code>
+            <span className="text-xs text-text-tertiary">{e.desc}</span>
           </div>
         ))}
       </div>
@@ -95,66 +97,84 @@ export default function DeepDive() {
   }, [])
 
   return (
-    <section className="py-24" id="deep-dive">
+    <motion.section
+      className="py-24"
+      id="deep-dive"
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={container(0.15)}
+    >
       <div className="max-w-[1080px] mx-auto px-8">
-        <p className="font-['DM_Mono',monospace] text-[11px] tracking-[0.14em] uppercase text-[#4ade80] mb-2 flex items-center gap-2 before:content-['//'] before:text-[#3d5442]">Featured</p>
-        <h2 className="text-[clamp(26px,3.5vw,38px)] font-medium tracking-[-0.02em] text-[#e2ece3] mb-12">Deep Dive</h2>
+        <motion.p variants={fadeUp} className="font-['DM_Mono',monospace] text-[11px] tracking-[0.14em] uppercase text-accent mb-2 flex items-center gap-2 before:content-['//'] before:text-text-tertiary">Featured</motion.p>
+        <motion.h2 variants={fadeUp} className="text-[clamp(26px,3.5vw,38px)] font-medium tracking-[-0.02em] text-text-primary mb-12">Deep Dive</motion.h2>
 
-        <div className="border border-[#1c2620] rounded-[10px] overflow-hidden">
+        <motion.div variants={fadeUp} className="border border-border-primary rounded-[10px] overflow-hidden">
           {/* Header */}
-          <div className="relative bg-[#0e1410] p-10 border-b border-[#1c2620] grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-start before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_100%_0%,rgba(74,222,128,0.04)_0%,transparent_60%)] before:pointer-events-none">
-            <div>
-              <div className="font-['DM_Mono',monospace] text-[10px] tracking-[0.14em] uppercase text-[#4ade80] mb-2.5">Featured Project</div>
-              <div className="font-['Instrument_Serif',Georgia,serif] italic text-[clamp(28px,4vw,42px)] font-normal text-[#e2ece3] mb-3.5">Insighta Labs+</div>
+          <div className="relative bg-bg-secondary md:p-10 p-4 border-b border-border-primary grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-start before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_100%_0%,var(--color-accent-bg)_0%,transparent_60%)] before:pointer-events-none">
+            <motion.div variants={fadeLeft}>
+              <div className="font-['DM_Mono',monospace] text-[10px] tracking-[0.14em] uppercase text-accent mb-2.5">Featured Project</div>
+              <div className="font-['Instrument_Serif',Georgia,serif] italic text-[clamp(28px,4vw,42px)] font-normal text-text-primary mb-3.5">Insighta Labs+</div>
               <div className="flex flex-wrap gap-2">
                 {['NestJS','Express','Prisma','PostgreSQL','TypeScript','Node.js CLI','Railway'].map(t => (
-                  <span key={t} className="font-['DM_Mono',monospace] text-[10px] px-2 py-0.5 rounded-full bg-[rgba(74,222,128,0.12)] text-[#4ade80] border border-[rgba(74,222,128,0.15)]">{t}</span>
+                  <span key={t} className="font-['DM_Mono',monospace] text-[10px] px-2 py-0.5 rounded-full bg-accent-bg text-accent border border-accent-border">{t}</span>
                 ))}
               </div>
-            </div>
-            <div className="flex md:flex-col items-start md:items-end gap-1.5 md:gap-2">
+            </motion.div>
+            <motion.div variants={fadeRight} className="flex flex-wrap items-end justify-center md:justify-end md:flex-nowrap gap-6 md:gap-2 md:flex-col w-full md:w-auto">
               {[['3','services'],['2026','profiles'],['1','auth source']].map(([num, label]) => (
-                <div key={label} className="font-['DM_Mono',monospace] text-[11px] text-[#3d5442] text-right">
-                  <strong className="block text-[22px] text-[#4ade80] font-medium">{num}</strong>{label}
+                <div key={label} className="font-['DM_Mono',monospace] text-[11px] text-text-tertiary text-center md:text-right">
+                  <strong className="block text-[22px] text-accent font-medium">{num}</strong>{label}
                 </div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* Body grid */}
           <div className="grid grid-cols-1 md:grid-cols-2">
             {blocks.map((block, i) => (
-              <div key={block.num} className={`p-10 border-b border-[#1c2620] bg-[#0e1410] ${i % 2 === 0 ? 'md:border-r' : ''}`}>
-                <div className="font-['DM_Mono',monospace] text-[10px] tracking-[0.14em] uppercase text-[#4ade80] flex items-center gap-2 mb-3.5">
-                  <span className="w-[18px] h-[18px] bg-[rgba(74,222,128,0.12)] border border-[rgba(74,222,128,0.2)] rounded-full flex items-center justify-center text-[10px] text-[#4ade80]">{block.num}</span>
+              <motion.div key={block.num} variants={fadeUp} className={`p-10 border-b border-border-primary bg-bg-secondary ${i % 2 === 0 ? 'md:border-r' : ''}`}>
+                <div className="font-['DM_Mono',monospace] text-[10px] tracking-[0.14em] uppercase text-accent flex items-center gap-2 mb-3.5">
+                  <span className="w-[18px] h-[18px] bg-accent-bg border border-accent-border rounded-full flex items-center justify-center text-[10px] text-accent">{block.num}</span>
                   {block.title}
                 </div>
-                <p className="text-sm text-[#7a9c82] leading-[1.75]">
+                <p className="text-sm text-text-secondary leading-[1.75]">
                   {block.preview}
-                  <button className="inline ml-1.5 text-sm font-black text-[#4ade80] bg-transparent border-none cursor-pointer p-0 leading-none tracking-widest hover:opacity-70" onClick={() => setActive(block)}>
+                  <button className="inline ml-1.5 text-sm font-black text-accent bg-transparent border-none cursor-pointer p-0 leading-none tracking-widest hover:opacity-70" onClick={() => setActive(block)}>
                     {'.'.repeat(dotCount)}
                   </button>
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {active && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-6" onClick={() => setActive(null)}>
-          <div className="bg-[#0e1410] border border-[#1c2620] rounded-[10px] w-full max-w-[560px] max-h-[80vh] overflow-y-auto scrollbar-thin" onClick={e => e.stopPropagation()}>
-            <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-[#1c2620]">
-              <h3 className="font-['DM_Mono',monospace] text-[10px] tracking-[0.14em] uppercase text-[#4ade80] flex items-center gap-2">
-                <span className="w-[18px] h-[18px] bg-[rgba(74,222,128,0.12)] border border-[rgba(74,222,128,0.2)] rounded-full inline-flex items-center justify-center text-[10px]">{active.num}</span>
+        <motion.div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => setActive(null)}
+        >
+          <motion.div
+            className="bg-bg-secondary border border-border-primary rounded-[10px] w-full max-w-[560px] max-h-[80vh] overflow-y-auto scrollbar-thin"
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-border-primary">
+              <h3 className="font-['DM_Mono',monospace] text-[10px] tracking-[0.14em] uppercase text-accent flex items-center gap-2">
+                <span className="w-[18px] h-[18px] bg-accent-bg border border-accent-border rounded-full inline-flex items-center justify-center text-[10px]">{active.num}</span>
                 {active.title}
               </h3>
-              <button className="bg-transparent border-none text-sm font-semibold text-[#3d5442] cursor-pointer px-2 py-0.5 rounded font-['DM_Mono',monospace] hover:bg-[#1c2620] hover:text-[#e2ece3] transition-colors" onClick={() => setActive(null)}>X</button>
+              <button className="bg-transparent border-none text-sm font-semibold text-text-tertiary cursor-pointer px-2 py-0.5 rounded font-['DM_Mono',monospace] hover:bg-border-primary hover:text-text-primary transition-colors" onClick={() => setActive(null)}>X</button>
             </div>
-            <div className="px-6 pt-5 pb-6 text-sm text-[#7a9c82] leading-[1.75] [&>p+p]:mt-3">{active.full}</div>
-          </div>
-        </div>
+            <div className="px-6 pt-5 pb-6 text-sm text-text-secondary leading-[1.75] [&>p+p]:mt-3">{active.full}</div>
+          </motion.div>
+        </motion.div>
       )}
-    </section>
+    </motion.section>
   )
 }
