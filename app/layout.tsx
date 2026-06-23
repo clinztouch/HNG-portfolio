@@ -5,9 +5,11 @@ export const metadata: Metadata = {
   title: 'Calvin Iordye — Backend Engineer',
 }
 
+import { ThemeProvider } from './providers'
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -16,8 +18,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#080c09] text-[#e2ece3] leading-relaxed antialiased font-[Geist,system-ui,sans-serif]">
-        {children}
+      <body className="bg-bg-primary text-text-primary leading-relaxed antialiased font-[Geist,system-ui,sans-serif] transition-colors duration-300">
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )
