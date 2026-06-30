@@ -34,6 +34,20 @@ const projects = [
     ),
     prs: [],
   },
+
+  {
+    idx: '03',
+    name: 'Job Scheduler',
+    tags: ['NestJS', 'TypeScript', 'Prisma 7', 'PostgreSQL', 'BullMQ', 'Alpine.js'],
+    github: 'https://github.com/clinztouch/job-scheduler',
+    demo: 'https://job-scheduler.ddns.net/',
+    desc: 'Production-grade background job scheduling engine with a benchmarking endpoint to compare a min-heap priority queue against a timing wheel algorithm at runtime.',
+    what: (
+      <>
+        <strong className="text-text-secondary">Designed &amp; implemented:</strong> DAG-based dependency system for multi-step workflow orchestration; priority aging to prevent starvation; exponential backoff retries with jitter (up to 3 attempts) and a Dead Letter Queue for failed job inspection and manual replay; SSE-based live dashboard updates; deployed to Ubuntu VPS with Nginx, DuckDNS, and Let&apos;s Encrypt SSL.
+      </>
+    ),
+  },
 ]
 
 export default function Projects() {
